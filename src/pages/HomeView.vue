@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col gap-20 justify-center items-center text-center">
-    <h1 class="text-5xl font-bold">ENCONTRE O PROFISSIONAL PARA O SERVIÇO QUE DESEJA!</h1>
+    <h1 class="text-6xl font-bold">ENCONTRE O PROFISSIONAL PARA O <br> SERVIÇO QUE DESEJA!</h1>
 
 
       <div class="relative w-full max-w-4xl">
