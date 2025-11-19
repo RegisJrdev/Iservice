@@ -15,7 +15,10 @@ Encontre o profissional para o serviço que deseja!
           class="w-full pl-10 pr-4 py-2 rounded-full border border-gray-300 bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500 ">
       </div>
 
-        <CardsCategories/>
+        <section class="w-full h-full bg-indigo-900">
+          <CardsCategories/>
+        </section>
+
     </div>
 </template>
 
