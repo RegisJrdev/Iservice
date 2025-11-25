@@ -5,7 +5,7 @@
     ]">
         <ul class="menu bg-base-200 rounded-box w-56 text">
             <li v-for="link in links" :key="link.name">
-                <router-link :to="link.path" class="text-white">{{ link.name }}</router-link>
+                <router-link :to="{ name: link.name }" class="text-white">{{ link.title }}</router-link>
             </li>
         </ul>
     </div>
@@ -13,8 +13,7 @@
 
 <script setup>
 const links = [
-    { name: 'Usuarios', path: '/users' },
-    { name: 'Pets', path: '/pets' },
+    { title: 'Usuários', name: 'users.view' },
 ];
 
 const props = defineProps({

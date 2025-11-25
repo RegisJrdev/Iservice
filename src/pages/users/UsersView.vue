@@ -5,15 +5,6 @@
           <BarraPesquisa/>
         </div>
 
-        <button 
-            @click="addUser"
-            class="bg-indigo-900 hover:bg-indigo-800 text-white font-semibold px-6 py-3 rounded-lg shadow-md transition-colors duration-200 flex items-center gap-2 h-fit"
-        >
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
-            </svg>
-            Adicionar
-        </button>
     </div>
     <div class="w-full overflow-x-auto">
         <table class="w-full bg-white shadow-2xl rounded-lg overflow-hidden">
@@ -29,7 +20,7 @@
                 <tr v-for="user in users" :key="user.id" class="hover:bg-gray-50 transition-colors duration-200">
                     <td class="px-6 py-4 text-sm font-semibold text-gray-900 bg-gray-50">{{ user.name }}</td>
                     <td class="px-6 py-4 text-sm text-gray-700 bg-gray-50">{{ user.country }}</td>
-                    <td class="px-6 py-4 text-sm text-gray-700 bg-gray-50">{{ user.job }}</td>
+                    <td class="px-6 py-4 text-sm text-gray-700 bg-gray-50">{{ user.categorie[0] }}</td>
                     <td class="px-6 py-4 text-sm text-gray-700 bg-gray-50 relative">
                         <button 
                             @click="toggleMenu(user.id)" 
@@ -71,14 +62,15 @@
 </template>
 
 <script setup>
-import { ref, router } from 'vue'
+import { onMounted, ref } from 'vue';
+import UserController from '@/controllers/UserController';
 
-const users = [
-  { id: 1, name: 'Junior', country: 'United States', job: 'Desktop Support Technician'},
-  { id: 2, name: 'Clailton', country: 'Sweden', job: 'Tax Accountant'},
-  { id: 3, name: 'Gabriel', country: 'Canada', job: 'Office Assistant I'},
-  { id: 4, name: 'Murilo', country: 'United Kingdom', job: 'Internal Auditor'},
-]
+const users = ref([])
+
+onMounted(async () => {
+  users.value = await UserController.index();
+  console.log(users.value);
+});
 
 const openMenuId = ref(null)
 
@@ -86,11 +78,10 @@ const toggleMenu = (userId) => {
   openMenuId.value = openMenuId.value === userId ? null : userId
 }
 
-const addUser = () => {
-  router
-  // Adicione sua lógica para abrir modal ou redirecionar para formulário
+const getUsers = async () => {
+    const users = await DBService.listar('users');
+    return users;
 }
-
 const editUser = (user) => {
   console.log('Editar usuário:', user)
   openMenuId.value = null

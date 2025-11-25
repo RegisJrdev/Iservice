@@ -28,7 +28,7 @@
 import router from '@/router'
 
 const handleGoToHome = () => {
-  router.push({ name: 'home'})// Lógica para navegar para a página inicial
+  router.push({ name: 'users.home'})// Lógica para navegar para a página inicial
 }
 const emit = defineEmits(['toggle-menu'])
 
