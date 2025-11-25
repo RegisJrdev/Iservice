@@ -1,26 +1,25 @@
+// vite.config.js
 import { fileURLToPath, URL } from 'node:url'
-
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import vueDevTools from 'vite-plugin-vue-devtools'
-import tailwindcss from '@tailwindcss/vite'
-import Components from 'unplugin-vue-components/vite'
+// ... (outros imports)
 
-// https://vite.dev/config/
+// https://vitejs.dev/config/
 export default defineConfig({
+  // 🎯 ADICIONE ESTA LINHA AQUI!
+  base: '/lService/', 
+  // ------------------------------------
   plugins: [
     vue(),
-    vueDevTools(),
+    VueDevTools(),
     tailwindcss(),
-    Components({
-      dirs: ['src/components'], 
-      extensions: ['vue'],
-      deep: true
-    }),
+    // ... (restante dos seus plugins)
   ],
   resolve: {
     alias: {
+      // ... (seu alias '@')
       '@': fileURLToPath(new URL('./src', import.meta.url))
-    },
+    }
   },
+  // ... (outras configurações)
 })
