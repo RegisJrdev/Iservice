@@ -25,7 +25,12 @@ const router = createRouter({
       ]
     },
 
-    {path: '/prestadores', component: PrestadoresView},
+    {
+      path: '/prestadores', 
+      children: [
+        { path: '', name: 'prestadores.view', component: PrestadoresView} ,
+    ]
+    },
 
     { path: '/:pathMatch(.*)*', name: 'NotFound', component: () => import('@/pages/NotFound.vue') }
   ],

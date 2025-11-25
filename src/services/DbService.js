@@ -18,7 +18,7 @@ class DbService {
     }
 
     async excluir(colecao, id) {
-        return await this.db.collection(colecao).delete(id);
+        return await this.db.collection(colecao).doc(id).delete();
     }
 
 }

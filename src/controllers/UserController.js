@@ -9,6 +9,7 @@ export default class UserController {
     static async registrar(payload) {
 
         const documento = {
+            id: crypto.randomUUID(),
             name: payload.nome,
             email: payload.email,
             password: payload.senha,
@@ -17,5 +18,8 @@ export default class UserController {
         }
 
         await DBService.adicionar('users', documento);
-    }
+    }   
+    static async excluir(colecao, id) {
+    return await this.db.collection(colecao).doc({ id: id }).delete();
+}
 }   

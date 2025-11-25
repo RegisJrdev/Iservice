@@ -1,5 +1,5 @@
 <template>
-     <div class="relative w-full max-w-4xl">
+     <div class="relative w-4/5 max-w-4xl">
         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

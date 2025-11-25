@@ -8,7 +8,7 @@
       <!-- Navbar Superior -->
       <NavBar @toggle-menu="toggleSideBar" />
       <!-- Área de Conteúdo (Rotas) -->
-      <main class="flex-1 overflow-y-auto px-30">
+      <main class="px-30">
         
         
         <router-view></router-view>
