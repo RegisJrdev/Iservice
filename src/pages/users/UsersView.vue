@@ -4,26 +4,23 @@
           <h1 class="text-4xl mb-4 font-bold">Usuários</h1>
           <BarraPesquisa/>
         </div>
-
     </div>
-    <div class="w-full overflow-x-auto">
-        <table class="w-full bg-white shadow-2xl rounded-lg overflow-hidden">
+    <div class="w-full">
+        <table class="w-full bg-white shadow rounded-lg ">
             <thead class="bg-indigo-900 text-white">
                 <tr>
                     <th class="px-6 py-4 text-left text-sm font-semibold uppercase ">Nome</th>
-                    <th class="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wide">País</th>
-                    <th class="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wide">Cargo</th>
-                    <th class="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wide">Ações</th>
+                    <th class="px-6 py-4 text-left text-sm font-semibold uppercase tracking-wide">Role</th> 
+                    <th class="px-6 py-4 text-center text-sm font-semibold uppercase tracking-wide">Ações</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
                 <tr v-for="user in users" :key="user.id" class="hover:bg-gray-50 transition-colors duration-200">
                     <td class="px-6 py-4 text-sm font-semibold text-gray-900 bg-gray-50">{{ user.name }}</td>
-                    <td class="px-6 py-4 text-sm text-gray-700 bg-gray-50">{{ user.country }}</td>
-                    <td class="px-6 py-4 text-sm text-gray-700 bg-gray-50">{{ user.categorie[0] }}</td>
-                    <td class="px-6 py-4 text-sm text-gray-700 bg-gray-50 relative">
+                    <td class="px-6 py-4 text-sm font-semibold text-gray-700 bg-gray-50">{{  user.role == 'client' ? 'Cliente' : 'Prestador' }}</td>
+                    <td class="px-6 py-4 text-sm text-center text-gray-700 bg-gray-50 relative">
                         <button 
-                            @click="toggleMenu(user.id)" 
+                            @click.stop="toggleMenu(user.id)" 
                             class="p-2 hover:bg-gray-200 rounded-full transition-colors duration-200"
                         >
                             <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
@@ -33,6 +30,7 @@
                         
                         <div 
                             v-if="openMenuId === user.id" 
+                            @click.stop
                             class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10 border border-gray-200"
                         >
                             <button 
@@ -45,7 +43,7 @@
                                 Editar
                             </button>
                             <button 
-                                @click="deleteUser(user)" 
+                                @click="deleteUser(user.id)" 
                                 class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 flex items-center gap-2"
                             >
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -62,36 +60,45 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, onBeforeUnmount } from 'vue';
 import UserController from '@/controllers/UserController';
 
 const users = ref([])
+const openMenuId = ref(null)
 
 onMounted(async () => {
   users.value = await UserController.index();
   console.log(users.value);
+  
+  // Adicionar listener para fechar menu ao clicar fora
+  document.addEventListener('click', closeMenu);
 });
 
-const openMenuId = ref(null)
+onBeforeUnmount(() => {
+  // Remover listener ao desmontar
+  document.removeEventListener('click', closeMenu); 
+});
+
+const closeMenu = () => {
+  openMenuId.value = null;
+}
 
 const toggleMenu = (userId) => {
   openMenuId.value = openMenuId.value === userId ? null : userId
 }
-
-const getUsers = async () => {
-    const users = await DBService.listar('users');
-    return users;
-}
-const editUser = (user) => {
-  console.log('Editar usuário:', user)
-  openMenuId.value = null
-  // Adicione sua lógica de edição aqui
+    
+const editUser = async (user) => {
+openMenuId.value = null
 }
 
-const deleteUser = (user) => {
-  console.log('Excluir usuário:', user)
+const deleteUser = async (id) => {
+    try {
+        return await UserController.excluir(id);
+    } catch (error) {
+        console.error('Erro ao excluir:', error);
+    }
+console.log('Excluir usuário:', id)
   openMenuId.value = null
-  // Adicione sua lógica de exclusão aqui
 }
 </script>
 

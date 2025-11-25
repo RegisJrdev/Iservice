@@ -72,11 +72,11 @@ async function onRegister() {
     console.log(payload)
     await UserController.registrar(payload)
     
-    if (form.role === 'provider') {
-      router.push('/prestador/dashboard')
-    } else {
-      router.push({ name: 'users.home' }) 
-    }
+    // if (form.role === 'provider') {
+    //   router.push('/prestador/dashboard')
+    // } else {
+    //   router.push({ name: 'users.home' }) 
+    // }
   } catch (err) {
     error.value = 'Erro ao cadastrar. Tente novamente.'
     console.log(err)

@@ -14,6 +14,7 @@
 <script setup>
 const links = [
     { title: 'Usuários', name: 'users.view' },
+    { title: 'Prestadores', name: 'prestadores.view' },
 ];
 
 const props = defineProps({
