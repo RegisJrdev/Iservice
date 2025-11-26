@@ -143,7 +143,7 @@ async function onRegister() {
     await UserController.registrar(payload)
     
     if (form.role === 'provider') {
-      router.push('{ name: 'prestadores.home' }')
+      router.push({ name: 'prestadores.home'})
     } else {
       router.push({ name: 'users.home' }) 
     }
