@@ -18,7 +18,12 @@ class DbService {
     }
 
     async excluir(colecao, id) {
-        return await this.db.collection(colecao).doc(id).delete();
+        //primeiro ele busca os docs
+        //depois procura o que tem id igual o da função
+        //dai joga ele para delete
+        const docs = await this.db.collection(colecao).get();
+        const docToDelete = docs.find(doc => doc.id === id);
+        return await this.db.collection(colecao).doc(docToDelete).delete();
     }
 
 }

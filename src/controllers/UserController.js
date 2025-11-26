@@ -5,9 +5,8 @@ export default class UserController {
         const users = await DBService.listar('users');
         return users;
     }
-
+    
     static async registrar(payload) {
-
         const documento = {
             id: crypto.randomUUID(),
             name: payload.nome,
@@ -16,10 +15,10 @@ export default class UserController {
             role: payload.role,
             categorie: payload.categorie
         }
-
         await DBService.adicionar('users', documento);
     }   
-    static async excluir(colecao, id) {
-    return await this.db.collection(colecao).doc({ id: id }).delete();
+    
+    static async excluir(id) {
+        return await DBService.excluir('users', id);
+    }
 }
-}   

@@ -3,19 +3,13 @@ import HomeView from '@/pages/HomeUserView.vue'
 import RegisterView from '@/pages/register/RegisterView.vue'
 import UsersView from '@/pages/users/UsersView.vue'
 import PrestadoresView from '@/pages/prestadores/PrestadoresView.vue'
+import PrestadoresHomeView from '@/pages/prestadores/PrestadoresHomeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
-    // {
-    //   path: '/',
-    //   name: 'home',
-    //   component: HomeView,
-    // },
     { path: '/', redirect: '/register' },
     { path: '/register', component: RegisterView },
-    // { path: '/buscar', component: BuscarView },
-    // { path: '/provider/dashboard', component: ProviderDashboard }
     {
       path: '/users',
       children: [
@@ -29,6 +23,7 @@ const router = createRouter({
       path: '/prestadores', 
       children: [
         { path: '', name: 'prestadores.view', component: PrestadoresView} ,
+        { path: 'dashboard', name: 'prestadores.home', component: PrestadoresHomeView} ,
     ]
     },
 

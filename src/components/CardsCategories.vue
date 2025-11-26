@@ -5,13 +5,12 @@
       Escolha a categoria do serviço que você procura
     </h1>
     <div class="grid gap-8 xl:grid-cols-5 md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
-      <!-- Adicionei grid-cols-1 para garantir 1 coluna em telas menores que sm -->
       <div
         v-for="categorie in Categorias"
         :key="categorie.name"
+        @click="handleGoToPrestadoresView(categorie.name)"
         class="w-full flex flex-col justify-center items-center p-4 h-40 shadow-md rounded duration-300 cursor-pointer hover:bg-gray-200 hover:scale-110 transition"
       >
-        <!-- Removi w-50 e sm:w-full redundante -->
         <div
           class="w-16 h-16 mb-4 rounded-full flex items-center justify-center transition-transform"
           :style="{ backgroundColor: categorie.color + '20' }"
@@ -23,13 +22,16 @@
           />
         </div>
         <strong class="text-center">{{ categorie.name }}</strong>
-        <!-- Adicionei text-center para centralizar o texto -->
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
+import { useRouter } from "vue-router";
+import { useFiltroStore } from "@/stores/filtroStore";
+
+const router = useRouter();
 import {
   WrenchScrewdriverIcon,
   BoltIcon,
@@ -39,7 +41,7 @@ import {
   ScissorsIcon,
   HomeModernIcon,
   CakeIcon,
-  AcademicCapIcon,
+  AcademicCapIcon,    
 } from "@heroicons/vue/24/outline";
 
 const Categorias = [
@@ -60,4 +62,10 @@ const Categorias = [
   { name: "Beleza e Estética", icon: ScissorsIcon, color: "#ec4899", count: 56 },
   { name: "Educação", icon: AcademicCapIcon, color: "#6366f1", count: 47 },
 ];
+
+function handleGoToPrestadoresView(categoria) {
+  const filtroStore = useFiltroStore();
+  filtroStore.setCategoria(categoria)
+  router.push({ name: 'prestadores.view'})
+}
 </script>
