@@ -18,20 +18,16 @@
       <tbody class="divide-y divide-gray-200">
         <tr v-for="user in users" :key="user.id" class="hover:bg-gray-50 transition-colors duration-200">
 
-          <!-- Nome -->
           <td class="px-6 py-4 text-sm font-semibold text-gray-900 bg-gray-50">
             {{ user.name }}
           </td>
 
-          <!-- Role -->
           <td class="px-6 py-4 text-sm font-semibold text-gray-700 bg-gray-50">
             {{ user.role == 'client' ? 'Cliente' : 'Prestador' }}
           </td>
 
-          <!-- Menu -->
           <td class="px-6 py-4 text-sm text-center text-gray-700 bg-gray-50 relative">
 
-            <!-- Botão -->
             <button 
               @click="toggleMenu(user.id)"
               class="p-2 hover:bg-gray-200 rounded-full transition-colors duration-200"
