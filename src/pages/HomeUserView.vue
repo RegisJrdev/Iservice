@@ -26,10 +26,62 @@
 
     <CardsCategories />
 
+    <section class="w-full pb-20">
+      <h1 class="text-2xl uppercase font-bold">Profissionais em Destaque</h1>
+      <p class="text-gray-500 mb-14">
+        Conheça os prestadores mais bem avaliados da plataforma
+      </p>
+      <span></span>
+
+      <ModalInfosPrestador v-model:showModal="showModal" :prestador="prestadorSelecionado" />
+      <pre>{{ showModal }}</pre>
+
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full gap-8">
+        <CardsPrestadores
+          v-for="DadosPrestador in prestadores"
+          :key="DadosPrestador.id"
+          :prestador="DadosPrestador"
+          @abrir-modal="abrirModal"
+        />
+      </div>
+    </section>
+
     <RouterView />
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { onMounted, ref } from "vue";
+import PrestadoresController from "@/controllers/prestadores/PrestadoresController";
+import ModalInfosPrestador from "@/components/ModalInfosPrestador.vue";
 
-<style lang="scss" scoped></style>
+const prestadores = ref([]);
+const showModal = ref(false);
+const prestadorSelecionado = ref(null);
+
+function abrirModal(prestador) {
+  prestadorSelecionado.value = prestador;
+  showModal.value = true; 
+}
+
+async function obterPrestadores() {
+  prestadores.value = await PrestadoresController.listarPrestadores();
+}
+
+onMounted(async () => {
+  await obterPrestadores();
+});
+</script>
+
+<style scoped>
+.fade-zoom-enter-active,
+.fade-zoom-leave-active {
+  transition: all 0.25s ease;
+}
+
+.fade-zoom-enter-from,
+.fade-zoom-leave-to {
+  opacity: 0;
+  transform: scale(0.95);
+}
+</style>

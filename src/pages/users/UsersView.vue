@@ -104,6 +104,7 @@ const editUser = async (user) => {
   openMenuId.value = null;
 };
 
+
 const deleteUser = async (user) => {
   if (!confirm('Tem certeza que deseja excluir este usuário?')) {
     openMenuId.value = null;

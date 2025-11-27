@@ -9,12 +9,9 @@ export default class UserController {
     static async registrar(payload) {
         const documento = {
             id: crypto.randomUUID(),
-            name: payload.nome,
-            email: payload.email,
-            password: payload.senha,
-            role: payload.role,
-            categorie: payload.categorie
+            ...payload
         }
+
         await DBService.adicionar('users', documento);
     }   
     

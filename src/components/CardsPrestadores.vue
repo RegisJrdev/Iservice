@@ -19,9 +19,10 @@
         ></path>
       </svg>
     </div>
-    <div class="p-3 bg-white hover:bg-gray-50 transition flex-1">
-      <h3 class="text-lg font-bold text-gray-800">{{ prestador.name }}</h3>
-      <div class="flex flex-wrap gap-1 mt-1">
+    <div @click="$emit('abrir-modal', prestador)" class="p-3 bg-white hover:bg-gray-50 transition flex-1">
+      <h3 class="text-lg font-bold text-gray-800">{{ prestador.nome }}</h3>
+      <p>{{ prestador.endereco.cidade }}, {{ prestador.endereco.bairro }}</p>
+      <div class="flex flex-wrap gap-1 mt-3">
         <span
           v-for="(categorie, index) in prestador.categorie"
           :key="index"

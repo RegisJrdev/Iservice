@@ -4,8 +4,8 @@
         isOpen ? 'w-56' : 'w-0'
     ]">
         <ul class="menu bg-base-200 font-bold rounded-box w-56 text">
-            <li v-for="link in links" :key="link.name">
-                <router-link :to="{ name: link.name }" class="text-white">{{ link.title }}</router-link>
+            <li v-for="link in links" :key="link.name" class="">
+                <router-link :to="{ name: link.name }" class="text-white hover:bg-white hover:text-indigo-900 rounded">{{ link.title }}</router-link>
             </li>
         </ul>
     </div>
