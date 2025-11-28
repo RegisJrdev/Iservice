@@ -47,21 +47,6 @@
         </p>
       </div>
 
-      <button 
-  v-if="showBtn === true && authUser"
-  class="w-full color-blue-btn text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 cursor-pointer"
-  @click="handleCancelar"
->
-  Cancelar Agendamento
-</button>
-
-<button 
-  v-else-if="showBtn === false"
-  class="w-full color-blue-btn-success text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 cursor-pointer"
-  @click="handleAceitar"
->
-  Aceitar Serviço
-</button>
     </div>
   </div>
 </template>

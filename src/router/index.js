@@ -8,6 +8,7 @@ import UsersView from '@/pages/users/UsersView.vue'
 import PrestadoresView from '@/pages/prestadores/PrestadoresView.vue'
 import PrestadoresHomeView from '@/pages/prestadores/PrestadoresHomeView.vue'
 import PrestadoresServicosView from '@/pages/prestadores/PrestadoresServicosView.vue'
+import PrestadoresServicosAceitosView from '@/pages/prestadores/PrestadoresServicosAceitosView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -20,14 +21,15 @@ const router = createRouter({
         { path: '', name: 'users.home', component: HomeView },
         { path: 'view', name: 'users.view', component: UsersView },
         { path: 'servicos', name: 'users.servicos', component: UsersServicosView },
+        { path: 'viewPrestadores', name: 'prestadores.view', component: PrestadoresView} ,
       ]
     },
     {
       path: '/prestadores', 
       children: [
         { path: '', name: 'prestadores.home', component: PrestadoresHomeView} ,
-        { path: 'view', name: 'prestadores.view', component: PrestadoresView} ,
         { path: 'servicos', name: 'prestadores.servicos', component: PrestadoresServicosView} ,
+        { path: 'servicos-aceitos', name: 'prestadores.servicos.aceitos', component: PrestadoresServicosAceitosView },
     ]
     },
 

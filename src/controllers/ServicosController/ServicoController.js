@@ -16,6 +16,10 @@ class ServicoController {
   async excluirServico(id) {
     return await DbService.excluir(this.colecao, id);
   }
+
+  async aceitarServico(id) {
+    return await DbService.atualizar('servicos', id, { aceito: true });
+  }
 };
 
 export default new ServicoController();

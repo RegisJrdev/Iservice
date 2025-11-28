@@ -2,7 +2,6 @@
   <div
     class="w-full max-w-sm mx-auto flex flex-col overflow-hidden rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 cursor-pointer mt-10 bg-white"
   >
-    <!-- Header com gradiente e ícone -->
     <div
       class="relative h-36 sm:h-40 bg-gradient-to-br from-[#11192D] via-[#1a2542] to-[#11192D] flex items-center justify-center overflow-hidden"
     >
@@ -57,7 +56,6 @@
         </p>
       </div>
       
-      <!-- Categorias/Serviços -->
       <div class="mt-auto">
         <p class="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">
           Serviços
@@ -74,7 +72,6 @@
         </div>
       </div>
 
-      <!-- Botão de ação sutil -->
       <div class="mt-4 pt-4 border-t border-gray-100">
         <div class="flex items-center justify-between text-sm">
           <span class="text-gray-500 font-medium">Ver detalhes</span>
