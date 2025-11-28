@@ -10,7 +10,7 @@ import Components from 'unplugin-vue-components/vite'
 export default defineConfig({
   plugins: [
     vue(),
-    vueDevTools(),
+    //vueDevTools(),
     tailwindcss(),
     Components({
       dirs: ['src/components'],
