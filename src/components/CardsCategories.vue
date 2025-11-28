@@ -1,6 +1,6 @@
 <template>
   <div class="w-full flex flex-col justify-center items-center p-4">
-    <h1 class="mb-8">
+    <h1 class="mb-10">
       <strong class="text-xl">Categorias de Serviços</strong> <br />
       Escolha a categoria do serviço que você procura
     </h1>
@@ -9,7 +9,7 @@
         v-for="categorie in Categorias"
         :key="categorie.name"
         @click="handleGoToPrestadoresView(categorie.name)"
-        class="w-full flex flex-col justify-center items-center p-4 h-40 shadow-md rounded duration-300 cursor-pointer hover:bg-gray-200 hover:scale-110 transition"
+        class="w-full flex flex-col justify-center border border-gray-300 items-center p-8 h-40 shadow-xl rounded duration-300 cursor-pointer hover:bg-gray-200 hover:scale-110 transition"
       >
         <div
           class="w-16 h-16 mb-4 rounded-full flex items-center justify-center transition-transform"

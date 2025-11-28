@@ -26,17 +26,16 @@
 
     <CardsCategories />
 
-    <section class="w-full pb-20">
+    <section class="w-full background-gray pt-15">
       <h1 class="text-2xl uppercase font-bold">Profissionais em Destaque</h1>
-      <p class="text-gray-500 mb-14">
+      <p class="text-gray-500 mb-10">
         Conheça os prestadores mais bem avaliados da plataforma
       </p>
       <span></span>
 
-      <ModalInfosPrestador v-model:showModal="showModal" :prestador="prestadorSelecionado" />
-      <pre>{{ showModal }}</pre>
+      <ModalInfosPrestador v-model:showModal="showModal" :prestador="prestadorSelecionado"/>
 
-      <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full gap-8">
+      <div class="w-full  grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 w-full gap-8 p-15">
         <CardsPrestadores
           v-for="DadosPrestador in prestadores"
           :key="DadosPrestador.id"
@@ -52,7 +51,7 @@
 
 <script setup>
 import { onMounted, ref } from "vue";
-import PrestadoresController from "@/controllers/prestadores/PrestadoresController";
+import PrestadoresController from "@/controllers/PrestadoresController/PrestadoresController";
 import ModalInfosPrestador from "@/components/ModalInfosPrestador.vue";
 
 const prestadores = ref([]);
@@ -66,6 +65,8 @@ function abrirModal(prestador) {
 
 async function obterPrestadores() {
   prestadores.value = await PrestadoresController.listarPrestadores();
+  console.log(prestadores.value);
+  
 }
 
 onMounted(async () => {
@@ -74,6 +75,11 @@ onMounted(async () => {
 </script>
 
 <style scoped>
+
+.background-gray {
+  background-color: #f5f5f5;
+}
+
 .fade-zoom-enter-active,
 .fade-zoom-leave-active {
   transition: all 0.25s ease;

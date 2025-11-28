@@ -5,6 +5,7 @@
       <h2 class="text-2xl font-bold text-gray-900 mb-6 text-center">Criar Conta</h2>
       
       <div class="space-y-4" v-if="step1">
+
         <div>
           <label class="block text-sm font-medium text-gray-700 mb-1">Nome</label>
           <input 
@@ -198,7 +199,7 @@
 <script setup>
 import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import UserController from '@/controllers/UserController'
+import UserController from '@/controllers/UsersController/UserController'
 
 const router = useRouter()
 

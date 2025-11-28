@@ -1,12 +1,12 @@
 import DBService from '@/services/DbService';
 
-export default class UserController {
-    static async index() {
+class UserController {
+    async index() {
         const users = await DBService.listar('users');
         return users;
     }
     
-    static async registrar(payload) {
+    async registrar(payload) {
         const documento = {
             id: crypto.randomUUID(),
             ...payload
@@ -15,7 +15,9 @@ export default class UserController {
         await DBService.adicionar('users', documento);
     }   
     
-    static async excluir(id) {
+    async excluir(id) {
         return await DBService.excluir('users', id);
     }
 }
+
+export default new UserController();

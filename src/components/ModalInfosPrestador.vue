@@ -36,9 +36,10 @@
                 <span class="text-gray-900">{{ prestador.email }}</span>
               </div>
 
+
               <div class="flex gap-3">
                 <span class="w-20 text-xs text-gray-500 font-medium">Função</span>
-                <span class="text-gray-900">{{ prestador.categorie }}</span>
+                <span v-for="cat in prestador.categorie" :key="cat" :value="cat" class="text-white font-bold bg-black p-2 text-xs rounded-full">{{ cat }} </span>
               </div>
 
               <div class="flex gap-3">
@@ -82,7 +83,7 @@
             <div class="flex flex-col gap-3">
               <button
                 @click="AgendarServico"
-                class="w-full bg-black text-white py-2.5 rounded-lg font-medium transition hover:opacity-90"
+                class="w-full bg-black text-white py-2.5 rounded-lg font-medium transition hover:opacity-90 cursor-pointer"
               >
                 Agendar Serviço
               </button>
@@ -94,7 +95,7 @@
         <footer class="mt-8 flex justify-end gap-3">
           <button
             @click="close"
-            class="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 hover:bg-gray-100 transition"
+            class="px-4 py-2 rounded-lg border border-gray-300 text-gray-700 cursor-pointer hover:border-red-600 hover:bg-red-600 hover:text-white transition"
           >
             Fechar
           </button>
@@ -102,17 +103,23 @@
       </div>
     </div>
   </transition>
+
+  <Toast :show="showToast" :mensagem="toastMensagem" />
 </template>
 
 <script setup>
 import { onMounted, onBeforeUnmount, toRaw } from "vue";
 import { ref, unref } from "vue";
-import ServicoController from "@/controllers/Servicos/ServicoController";
+import ServicoController from "@/controllers/ServicosController/ServicoController";
+import Toast from "./toast.vue";
 
 const props = defineProps({
   showModal: { type: Boolean, default: false },
   prestador: { type: Object, default: null },
 });
+
+const showToast = ref(false);
+const toastMensagem = ref("Teste");
 
 const emit = defineEmits(["update:showModal"]);
 const categoriaSelecionada = ref([]);
@@ -130,6 +137,10 @@ async function AgendarServico() {
     console.log(payload);
     
     await ServicoController.adicionarServico(payload)
+
+    showToast.value = true;
+    toastMensagem.value = `Servico agendado com sucesso!`;
+    setTimeout(() => (showToast.value = false), 3000);
 }
 </script>
 

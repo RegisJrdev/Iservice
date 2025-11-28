@@ -8,8 +8,7 @@
       <!-- Navbar Superior -->
       <NavBar @toggle-menu="toggleSideBar" v-if="!isAuthPage"/>
       <!-- Área de Conteúdo (Rotas) -->
-      <main class="h-full overflow-y-auto px-30">
-        
+      <main class="h-full overflow-y-auto ">
         
         <router-view></router-view>
 
