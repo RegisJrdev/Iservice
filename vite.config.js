@@ -13,7 +13,7 @@ export default defineConfig({
     vueDevTools(),
     tailwindcss(),
     Components({
-      dirs: ['src/components'], 
+      dirs: ['src/components'],
       extensions: ['vue'],
       deep: true
     }),
